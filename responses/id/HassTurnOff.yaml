@@ -1,9 +1,12 @@
-language: id
+language: en
 responses:
   intents:
     HassTurnOff:
-      default: Turned off {{ slots.name }}
-      lights_area: Turned off lights in {{ slots.area }}
-      fans_area: Turned off fans in {{ slots.area }}
-      cover: Closed {{ slots.name }}
-      cover_area: Closed {{ slots.area }}
+      default: "Turned off the {{ state.domain }}"
+      lights_area: "Turned off the lights"
+      fans_area: "Turned off the fans"
+      cover: "Closed"
+      light_all: "Turned off all of the lights"
+      fan_all: "Turned off all of the fans"
+      cover_device_class: "Closed the {{ slots.device_class }}"
+      lock: "Unlocked"
