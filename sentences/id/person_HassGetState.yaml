@@ -1,0 +1,44 @@
+language: "id"
+intents:
+  HassGetState:
+    data:
+      # https://www.home-assistant.io/integrations/person/
+      - sentences:
+          - "di mana <name>"
+        response: where
+        requires_context:
+          domain: person
+        slots:
+          domain: person
+
+      - sentences:
+          - "apakah <name> [ada] di {zone:state}"
+        response: one_yesno
+        requires_context:
+          domain: person
+        slots:
+          domain: person
+
+      - sentences:
+          - "apakah ada orang di {zone:state}"
+        response: any
+        slots:
+          domain: person
+
+      - sentences:
+          - "apakah semuanya ada di {zone:state}"
+        response: all
+        slots:
+          domain: person
+
+      - sentences:
+          - "siapa yang ada di {zone:state}"
+        response: which
+        slots:
+          domain: person
+
+      - sentences:
+          - "berapa (banyak|orang) yang ada di {zone:state}"
+        response: how_many
+        slots:
+          domain: person
