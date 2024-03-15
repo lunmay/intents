@@ -1,4 +1,35 @@
-language: id
+language: "id"
 intents:
   HassGetState:
-    data: []
+    data:
+      - sentences:
+          - "apakah <name> {cover_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: cover
+        slots:
+          domain: cover
+
+      - sentences:
+          - "apakah ada {cover_classes:device_class} yang {cover_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: cover
+
+      - sentences:
+          - "apakah semua {cover_classes:device_class} {cover_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: cover
+
+      - sentences:
+          - "{cover_classes:device_class} mana yang {cover_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: cover
+
+      - sentences:
+          - "berapa {cover_classes:device_class} yang {cover_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: cover

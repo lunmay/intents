@@ -1,0 +1,15 @@
+language: "id"
+intents:
+  HassSetPosition:
+    data:
+      - sentences:
+          - (<set_imperatif>|<buka_imperatif>|<tutup_imperatif>) [posisi] <name> menjadi <position>"
+        requires_context:
+          domain: cover
+        slots:
+          domain: cover
+
+      - sentences:
+          - (<set_imperatif>|<buka_imperatif>|<tutup_imperatif>) [posisi] {cover_classes:device_class} di <area> menjadi <position>"
+        slots:
+          domain: cover

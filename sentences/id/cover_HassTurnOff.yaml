@@ -1,4 +1,31 @@
-language: id
+language: "id"
 intents:
   HassTurnOff:
-    data: []
+    data:
+      - sentences:
+          - "<tutup_imperatif> <name> [di <area>]"
+        requires_context:
+          domain: cover
+        response: cover
+
+      - sentences:
+          - "<tutup_imperatif> [pintu] garasi"
+        slots:
+          domain: cover
+          device_class: garage
+        response: cover_device_class
+
+      - sentences:
+          - "<tutup_imperatif> {cover_classes:device_class} di <area>"
+        slots:
+          domain: cover
+        response: cover_device_class
+
+      - sentences:
+          - "<tutup_imperatif> [the] {cover_classes:device_class} di sini"
+        slots:
+          domain: cover
+        response: cover_device_class
+        requires_context:
+          area:
+            slot: true
