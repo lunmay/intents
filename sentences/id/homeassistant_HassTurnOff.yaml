@@ -3,4 +3,12 @@ intents:
   HassTurnOff:
     data:
       - sentences:
-          - "<mati_imperatif> <nama>"
+          - "<mati_imperatif> <name> [di <area>]"
+        excludes_context:
+          domain:
+            - binary_sensor
+            - cover
+            - lock
+            - scene
+            - script
+            - sensor

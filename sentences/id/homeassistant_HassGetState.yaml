@@ -1,4 +1,33 @@
-language: id
+language: "id"
 intents:
   HassGetState:
-    data: []
+    data:
+      - sentences:
+          - "bagaimana status <name> [di <area>]"
+        response: one
+        excludes_context:
+          domain:
+            - scene
+            - script
+      - sentences:
+          - "apakah status <name> {on_off_states:state} [di <area>]"
+        response: one_yesno
+        excludes_context:
+          domain:
+            - cover
+
+      - sentences:
+          - "apakah ada {on_off_domains:domain} yang {on_off_states:state} [di <area>]"
+        response: any
+
+      - sentences:
+          - "apakah semua {on_off_domains:domain} {on_off_states:state} [di <area>]"
+        response: all
+
+      - sentences:
+          - "{on_off_domains:domain} mana yang {on_off_states:state} [di <area>]"
+        response: which
+
+      - sentences:
+          - "berapa {on_off_domains:domain} yang {on_off_states:state} [di <area>]"
+        response: how_many
