@@ -1,0 +1,6 @@
+language: "id"
+intents:
+  HassNevermind:
+    data:
+      - sentences:
+          - "nggak jadi"
