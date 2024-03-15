@@ -1,0 +1,10 @@
+language: "id"
+intents:
+  HassSetPosition:
+    data:
+      - sentences:
+          - "(<set_imperatif>|<buka_imperatif>|<tutup_imperarif>) <name> (ke|menjadi) <position>"
+        requires_context:
+          domain: valve
+        slots:
+          domain: valve

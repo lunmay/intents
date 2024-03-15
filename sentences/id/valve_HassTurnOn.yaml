@@ -1,0 +1,11 @@
+language: "id"
+intents:
+  HassTurnOn:
+    data:
+      - sentences:
+          - "<buka_imperatif> <name>"
+        requires_context:
+          domain: valve
+        slots:
+          domain: valve
+        response: valve
