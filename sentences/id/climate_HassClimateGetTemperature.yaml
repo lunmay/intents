@@ -1,5 +1,14 @@
-language: id
+language: "id"
 intents:
   HassClimateGetTemperature:
     data:
-      - sentences: []
+      - sentences:
+          - "berapa (suhu|temperatur) [di <area>]"
+          - "seberapa (panas|dingin|hangat) [di <area>]"
+          - "apakah [di <area>] sedang (panas|dingin|hangat)"
+      - sentences:
+          - "berapa (suhu|temperatur) <name>"
+          - "seberapa (panas|dingin|hangat) <name>"
+          - "apakah <name> sedang (panas|dingin|hangat)"
+        requires_context:
+          domain: "climate"

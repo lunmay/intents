@@ -1,5 +1,6 @@
-language: id
+language: "id"
 intents:
   HassClimateSetTemperature:
     data:
-      - sentences: []
+      - sentences:
+          - "<set_imperatif> <temp> [di <area>] (ke|menjadi) <temperature_value>"
