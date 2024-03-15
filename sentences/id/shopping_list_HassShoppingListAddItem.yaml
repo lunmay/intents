@@ -1,0 +1,10 @@
+language: "id"
+intents:
+  HassShoppingListAddItem:
+    data:
+      - sentences:
+          - tambah[kan] <item> ke<my_list>
+        response: item_added
+        expansion_rules:
+          my_list: "[ daftar] [belanja]"
+          item: "{shopping_list_item:item}"
