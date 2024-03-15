@@ -1,0 +1,8 @@
+language: "id"
+intents:
+  HassVacuumStart:
+    data:
+      - sentences:
+          - "mulai <name>"
+        requires_context:
+          domain: vacuum

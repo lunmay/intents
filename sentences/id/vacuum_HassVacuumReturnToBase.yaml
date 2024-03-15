@@ -1,0 +1,9 @@
+language: "id"
+intents:
+  HassVacuumReturnToBase:
+    data:
+      - sentences:
+          - "<name> kembali ke (dok|base)"
+          - "kembalikan <name> ke (dok|base)"
+        requires_context:
+          domain: vacuum
