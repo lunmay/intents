@@ -1,0 +1,889 @@
+language: "id"
+intents:
+  HassGetState:
+    data:
+      # https://www.home-assistant.io/integrations/binary_sensor/
+      # Battery
+      - sentences:
+          - "apakah <baterai_kb> <name> {bs_battery_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: battery
+        slots:
+          domain: binary_sensor
+          device_class: battery
+
+      - sentences:
+          - "apakah ada <baterai_kb> yang {bs_battery_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: battery
+
+      - sentences:
+          - "apakah semua <baterai_kb> {bs_battery_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: battery
+
+      - sentences:
+          - "<baterai_kb> mana yang {bs_battery_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: battery
+
+      - sentences:
+          - "berapa <baterai_kb> yang {bs_battery_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: battery
+
+      # Battery charging
+      - sentences:
+          - "apakah <baterai_kb> {bs_battery_charging_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: battery_charging
+        slots:
+          domain: binary_sensor
+          device_class: battery_charging
+
+      - sentences:
+          - "apakah ada <baterai_kb> yang {bs_battery_charging_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: battery_charging
+
+      - sentences:
+          - "apakah semua <baterai_kb> {bs_battery_charging_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: battery_charging
+
+      - sentences:
+          - "<baterai_kb> mana yang {bs_battery_charging_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: battery_charging
+
+      - sentences:
+          - "berapa <baterai_kb> yang {bs_battery_charging_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: battery_charging
+
+      # Carbon monoxide
+      - sentences:
+          - "apakah <name> {bs_carbon_monoxide_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: carbon_monoxide
+        slots:
+          domain: binary_sensor
+          device_class: carbon_monoxide
+
+      - sentences:
+          - "apakah ada sensor karbonmonoksida yang {bs_carbon_monoxide_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: carbon_monoxide
+
+      - sentences:
+          - "apakah ada karbonmonoksida [terdeteksi] di <area>"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: carbon_monoxide
+          state: "on"
+
+      - sentences:
+          - "apakah semua sensor karbonmonoksida {bs_carbon_monoxide_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: carbon_monoxide
+
+      - sentences:
+          - "sensor karbonmonoksida mana yang {bs_carbon_monoxide_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: carbon_monoxide
+
+      - sentences:
+          - "berapa sensor karbonmonoksida yang {bs_carbon_monoxide_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: carbon_monoxide
+
+      # Cold
+      - sentences:
+          - "apakah <name> dingin [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: cold
+        slots:
+          domain: binary_sensor
+          device_class: cold
+
+      - sentences:
+          - "apakah ada sensor yang dingin [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: cold
+          state: "on"
+
+      - sentences:
+          - "sensor mana yang dingin [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: cold
+          state: "on"
+
+      - sentences:
+          - "berapa sensor yang dingin [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: cold
+          state: "on"
+
+      # Connectivity
+      - sentences:
+          - "apakah <name> {bs_connectivity_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: connectivity
+        slots:
+          domain: binary_sensor
+          device_class: connectivity
+
+      - sentences:
+          - "apakah ada perangkat yang {bs_connectivity_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: connectivity
+
+      - sentences:
+          - "apakah semua perangkat {bs_connectivity_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: connectivity
+
+      - sentences:
+          - "perangkat mana yang {bs_connectivity_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: connectivity
+
+      - sentences:
+          - "berapa perangkat yang {bs_connectivity_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: connectivity
+
+      # Door
+      - sentences:
+          - "apakah <name> {bs_door_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: door
+        slots:
+          domain: binary_sensor
+          device_class: door
+
+      # Garage door
+      - sentences:
+          - "apakah <name> {bs_garage_door_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: garage_door
+        slots:
+          domain: binary_sensor
+          device_class: garage_door
+
+      # Gas
+      - sentences:
+          - "apakah <name> {bs_gas_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: gas
+        slots:
+          domain: binary_sensor
+          device_class: gas
+
+      - sentences:
+          - "apakah ada sensor gas yang {bs_gas_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: gas
+
+      - sentences:
+          - "apakah ada gas [terdeteksi] di <area>"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: gas
+          state: "on"
+
+      - sentences:
+          - "apakah semua sensor gas {bs_gas_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: gas
+
+      - sentences:
+          - "sensor gas mana yang {bs_gas_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: gas
+
+      - sentences:
+          - "berapa sensor gas yang {bs_gas_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: gas
+
+      # Heat
+      - sentences:
+          - "apakah <name> {bs_heat_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: heat
+        slots:
+          domain: binary_sensor
+          device_class: heat
+
+      - sentences:
+          - "apakah ada sensor yang panas [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: heat
+          state: "on"
+
+      - sentences:
+          - "sensor mana yang panas [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: heat
+          state: "on"
+
+      - sentences:
+          - "berapa sensor yang panas [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: heat
+          state: "on"
+
+      # Light
+      - sentences:
+          - "apakah <name> {bs_light_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: light
+        slots:
+          domain: binary_sensor
+          device_class: light
+
+      - sentences:
+          - "apakah ada (cahaya|sinar) yang {bs_light_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: light
+
+      - sentences:
+          - "apakah semua (cahaya|sinar) {bs_light_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: light
+
+      - sentences:
+          - "(cahaya|sinar) mana yang {bs_light_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: light
+
+      - sentences:
+          - "berapa (cahaya|sinar) yang {bs_light_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: light
+
+      # Lock
+      - sentences:
+          - "apakah <name> {bs_lock_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: lock
+        slots:
+          domain: binary_sensor
+          device_class: lock
+
+      # Moisture
+      - sentences:
+          - "apakah <name> {bs_moisture_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: moisture
+        slots:
+          domain: binary_sensor
+          device_class: moisture
+
+      - sentences:
+          - "apakah ada sensor air yang {bs_moisture_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: moisture
+
+      - sentences:
+          - "apakah ada yang (bocor|basah) [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: moisture
+          state: "on"
+
+      - sentences:
+          - "apakah semua sensor air {bs_moisture_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: moisture
+
+      - sentences:
+          - "sensor air mana yang {bs_moisture_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: moisture
+
+      - sentences:
+          - "berapa sensor air yang {bs_moisture_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: moisture
+
+      # Motion
+      - sentences:
+          - "apakah <name> {bs_motion_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: motion
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      - sentences:
+          - "apakah ada sensor gerak yang {bs_motion_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      - sentences:
+          - "apakah ada (yang bergerak|pergerakan) terdeteksi [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: motion
+          state: "on"
+
+      - sentences:
+          - "apakah semua sensor gerak {bs_motion_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      - sentences:
+          - "sensor gerak mana yang {bs_motion_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      - sentences:
+          - "berapa sensor gerak yang {bs_motion_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      # Occupancy
+      - sentences:
+          - "apakah <name> {bs_occupancy_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: occupancy
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+
+      - sentences:
+          - "apakah ada sensor ketempatan yang {bs_occupancy_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+
+      - sentences:
+          - "apakah ada yang menempati [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+          state: "on"
+
+      - sentences:
+          - "apakah semua sensor ketempatan {bs_occupancy_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+
+      - sentences:
+          - "sensor ketempatan mana yang {bs_occupancy_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+
+      - sentences:
+          - "berapa sensor ketempatan yang {bs_occupancy_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+
+      # Opening
+      - sentences:
+          - "apakah <name> {bs_opening_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: opening
+        slots:
+          domain: binary_sensor
+          device_class: opening
+
+      - sentences:
+          - "apakah ada pembukaan yang {bs_opening_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: opening
+
+      - sentences:
+          - "apakah semua pembukaan {bs_opening_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: opening
+
+      - sentences:
+          - "pembukaan mana yang {bs_opening_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: opening
+
+      - sentences:
+          - "berapa pembukaan yang {bs_opening_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: opening
+
+      # Plug
+      - sentences:
+          - "apakah <name> {bs_plug_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: plug
+        slots:
+          domain: binary_sensor
+          device_class: plug
+
+      - sentences:
+          - "apakah ada perangkat yang {bs_plug_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: plug
+
+      - sentences:
+          - "apakah semua perangkat {bs_plug_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: plug
+
+      - sentences:
+          - "perangkat mana yang {bs_plug_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: plug
+
+      - sentences:
+          - "berapa perangkat yang {bs_plug_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: plug
+
+      # Power
+      - sentences:
+          - "apakah <name> {bs_power_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: power
+        slots:
+          domain: binary_sensor
+          device_class: power
+
+      - sentences:
+          - "apakah ada perangkat yang {bs_power_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: power
+
+      - sentences:
+          - "apakah semua perangkat {covebs_power_statesr_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: power
+
+      - sentences:
+          - "perangkat mana yang {bs_power_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: power
+
+      - sentences:
+          - "berapa perangkat yang {bs_power_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: power
+
+      # Presence
+      - sentences:
+          - "apakah <name> {bs_presence_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: presence
+        slots:
+          domain: binary_sensor
+          device_class: presence
+
+      - sentences:
+          - "apakah ada perangkat yang {bs_presence_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: presence
+
+      - sentences:
+          - "apakah semua perangkat {bs_presence_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: presence
+
+      - sentences:
+          - "perangkat mana yang {bs_presence_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: presence
+
+      - sentences:
+          - "berapa perangkat yang {bs_presence_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: presence
+
+      # Problem
+      - sentences:
+          - "apakah ada masalah dengan <name> [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: problem
+        slots:
+          domain: binary_sensor
+          device_class: problem
+          state: "on"
+
+      # Running
+      - sentences:
+          - "apakah <name> {bs_running_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: running
+        slots:
+          domain: binary_sensor
+          device_class: running
+
+      - sentences:
+          - "apakah ada perangkat yang {bs_running_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: running
+
+      - sentences:
+          - "apakah semua perangkat {bs_running_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: running
+
+      - sentences:
+          - "perangkat mana yang {bs_running_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: running
+
+      - sentences:
+          - "berapa perangkat yang {bs_running_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: running
+
+      # Safety
+      - sentences:
+          - "apakah <name> {bs_safety_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: safety
+        slots:
+          domain: binary_sensor
+          device_class: safety
+
+      # Smoke
+      - sentences:
+          - "apakah <name> {bs_smoke_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: smoke
+        slots:
+          domain: binary_sensor
+          device_class: smoke
+
+      - sentences:
+          - "apakah ada sensor asap yang {bs_smoke_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: smoke
+
+      - sentences:
+          - "apakah ada asap di <area>"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: smoke
+          state: "on"
+
+      - sentences:
+          - "apakah semua sensor asap {bs_smoke_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: smoke
+
+      - sentences:
+          - "sensor asap mana yang {bs_smoke_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: smoke
+
+      - sentences:
+          - "berapa sensor asap yang {bs_smoke_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: smoke
+
+      # Sound
+      - sentences:
+          - "apakah <name> {bs_sound_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: sound
+        slots:
+          domain: binary_sensor
+          device_class: sound
+
+      - sentences:
+          - "apakah ada sensor (suara|kebisingan) yang {bs_sound_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: sound
+
+      - sentences:
+          - "apakah ada yang bising di <area>"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: sound
+          state: "on"
+
+      - sentences:
+          - "apakah semua sensor (suara|kebisingan) {bs_sound_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: sound
+
+      - sentences:
+          - "sensor (suara|kebisingan) mana yang {bs_sound_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: sound
+
+      - sentences:
+          - "berapa sensor (suara|kebisingan) yang {bs_sound_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: sound
+
+      # Tamper
+      - sentences:
+          - "apakah <name> {bs_tamper_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: tamper
+        slots:
+          domain: binary_sensor
+          device_class: tamper
+
+      # Update
+      - sentences:
+          - "apakah <name> {bs_update_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: update
+        slots:
+          domain: binary_sensor
+          device_class: update
+
+      - sentences:
+          - "apakah ada [(firmware|software)] yang tersedia [di <area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: update
+          state: "on"
+
+      - sentences:
+          - "(firmware|software) mana yang tersedia [di <area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: update
+          state: "on"
+
+      - sentences:
+          - "berapa (firmware|software) yang tersedia [di <area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: update
+          state: "on"
+
+      # Vibration
+      - sentences:
+          - "apakah <name> {bs_vibration_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: vibration
+        slots:
+          domain: binary_sensor
+          device_class: vibration
+
+      - sentences:
+          - "apakah ada yang bergetar [di <area>]"
+        response: any
+        requires_context:
+          domain: binary_sensor
+          device_class: vibration
+        slots:
+          domain: binary_sensor
+          device_class: vibration
+          state: "on"
+
+      # Window
+      - sentences:
+          - "apakah <name> {bs_window_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: window
+        slots:
+          domain: binary_sensor
+          device_class: window
