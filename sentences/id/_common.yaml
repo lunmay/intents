@@ -337,6 +337,7 @@ expansion_rules:
   name: "{name}"
   area: "{area}"
   temp: "(suhu|temperatur)"
+  baterai_kb: "(baterai|batere)"
   brightness_value: "{brightness}[[ ]%| persen]"
   temperature_value: "{temperature}[ ][°|derajat][ ][{temperature_unit}]"
   position_value: "{position}[[ ]%| persen]"
