@@ -1,0 +1,16 @@
+language: "id"
+intents:
+  HassTurnOn:
+    data:
+      - sentences:
+          - "kunci <name> [di <area>]"
+        requires_context:
+          domain: lock
+        response: lock
+
+      - sentences:
+          - "kunci [semua] [(kunci|pintu)] [di] <area>"
+        slots:
+          domain: "lock"
+          name: "all"
+        response: lock
