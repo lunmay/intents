@@ -1,0 +1,11 @@
+language: "id"
+intents:
+  HassTurnOn:
+    data:
+      - sentences:
+          - "[jalankan|<nyala_imperatif>] [skrip] <name>"
+        requires_context:
+          domain: script
+        slots:
+          domain: script
+        response: script
