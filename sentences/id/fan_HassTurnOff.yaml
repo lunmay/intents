@@ -1,8 +1,26 @@
-language: id
+language: "id"
 intents:
   HassTurnOff:
     data:
-      - sentences: []
+      - sentences:
+          - "<mati_imperatif> [semua] kipas [angin] di <area>"
+        slots:
+          domain: "fan"
+          name: "all"
+        response: fans_area
+
+      - sentences:
+          - "<mati_imperatif> semua kipas angin di semua tempat"
+        response: "light_all"
+        slots:
+          domain: "fan"
+          name: "all"
+
+      - sentences:
+          - "<mati_imperatif> [semua] kipas [angin] di sini"
+        response: "fans_area"
         slots:
           domain: fan
-          name: all
+        requires_context:
+          area:
+            slot: true

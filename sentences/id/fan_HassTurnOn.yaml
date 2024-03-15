@@ -1,8 +1,19 @@
-language: id
+language: "en"
 intents:
   HassTurnOn:
     data:
-      - sentences: []
+      - sentences:
+          - "<nyala_imperatif> [semua] kipas [angin] di <area>"
+        slots:
+          domain: "fan"
+          name: "all"
+        response: fans_area
+
+      - sentences:
+          - "<nyala_imperatif> [semua] kipas [angin] di sini"
+        response: "fans_area"
         slots:
           domain: fan
-          name: all
+        requires_context:
+          area:
+            slot: true
