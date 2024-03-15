@@ -1,0 +1,35 @@
+language: "id"
+intents:
+  HassGetState:
+    data:
+      - sentences:
+          - "apakah <name> {lock_states:state} [di <area>]"
+        response: one_yesno
+        requires_context:
+          domain: lock
+        slots:
+          domain: lock
+
+      - sentences:
+          - "apakah ada pintu yang {lock_states:state} [di <area>]"
+        response: any
+        slots:
+          domain: lock
+
+      - sentences:
+          - "apakah semua pintu {cover_states:state} [di <area>]"
+        response: all
+        slots:
+          domain: lock
+
+      - sentences:
+          - "pintu mana yang {cover_states:state} [di <area>]"
+        response: which
+        slots:
+          domain: lock
+
+      - sentences:
+          - "berapa pintu yang {cover_states:state} [di <area>]"
+        response: how_many
+        slots:
+          domain: lock
