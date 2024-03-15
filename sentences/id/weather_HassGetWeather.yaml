@@ -1,0 +1,10 @@
+language: "id"
+intents:
+  HassGetWeather:
+    data:
+      - sentences:
+          - "(bagaimana|gimana) cuaca"
+      - sentences:
+          - "(bagaimana|gimana) cuaca di <name>"
+        requires_context:
+          domain: weather
