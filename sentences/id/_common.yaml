@@ -1,12 +1,30 @@
-language: id
+language: "id"
 responses:
   errors:
-    no_intent: "Maaf, Saya tidak mengerti"
-    no_area: "Tidak ada area bernama {{ area }}"
-    no_domain_in_area: "{{ area }} tidak mengandung {{ domain }}"
-    no_device_class_in_area: "{{ area }} tidak mengandung {{ device_class }}"
-    no_entity: "Tidak ada perangkat atau entitas bernama {{ entity }}"
-    handle_error: "Terjadi kesalahan tak terduga saat menangani intent"
+    # General errors
+    no_intent: "Maaf, kami tidak paham"
+    handle_error: "Kesalahan tidak terduga telah terjadi"
+
+    # Errors for when user is not logged in
+    no_area: "Maaf, kami tidak mengetahui area bernama {{ area }}"
+    no_domain: "Maaf, kami tidak mengetahui adanya {{ domain }}"
+    no_domain_in_area: "Maaf, kami tidak mengetahui ada {{ domain }} di area {{ area }}"
+    no_device_class: "Maaf, kami tidak mengetahui adanya {{ device_class }}"
+    no_device_class_in_area: "Maaf, kami tidak mengetahui ada {{ device_class }} di area {{ area }}"
+    no_entity: "Maaf, kami tidak mengetahui ada perangkat bernama {{ entity }}"
+    no_entity_in_area: "Maaf, kami tidak mengetahui ada perangkat bernama {{ entity }} di area {{ area }}"
+
+    # Errors for when user is logged in and we can give more information
+    no_entity_exposed: "Maaf, {{ entity }} tidak diekspos"
+    no_entity_in_area_exposed: "Maaf, {{ entity }} di area {{ area }} tidak diekspos"
+    no_domain_exposed: "Maaf, tidak ada {{ domain }} yang diekspos"
+    no_domain_in_area_exposed: "Maaf, tidak ada {{ domain }} di area {{ area }} yang diekspos"
+    no_device_class_exposed: "Maaf, tidak ada {{ device_class }} yang diekspos"
+    no_device_class_in_area_exposed: "Maaf, tidak ada {{ device_class }} di area {{ area }} yang diekspos"
+
+    # Used when multiple (exposed) devices have the same name
+    duplicate_entities: "Maaf, ada beberapa perangkat yang bernama {{ entity }}"
+    duplicate_entities_in_area: "Maaf, ada beberapa perangkat yang bernama {{ entity }} di area {{ area }}"
 lists:
   color:
     values:
@@ -16,9 +34,7 @@ lists:
         out: "black"
       - in: "merah"
         out: "red"
-      - in: "oranye"
-        out: "orange"
-      - in: "jingga"
+      - in: "(oranye|jingga)"
         out: "orange"
       - in: "kuning"
         out: "yellow"
@@ -30,6 +46,10 @@ lists:
         out: "purple"
       - in: "coklat"
         out: "brown"
+      - in: "(merah muda|pink)"
+        out: "pink"
+      - in: "(pirus|toska)"
+        out: "turquoise"
   brightness:
     range:
       type: "percentage"
@@ -45,17 +65,294 @@ lists:
       - "celsius"
       - in: "c"
         out: "celsius"
+      - "fahrenheit"
+      - in: "f"
+        out: "fahrenheit"
+  brightness_level:
+    values:
+      - in: (maks|maksimum|maksimal|tertinggi)
+        out: 100
+      - in: (minimum|minimal|terendah)
+        out: 1
+  on_off_states:
+    values:
+      - in: "(nyala|aktif)"
+        out: "on"
+      - in: "(mati|nonaktif)"
+        out: "off"
+  on_off_domains:
+    values:
+      - in: "lampu"
+        out: light
+      - in: "kipas angin"
+        out: fan
+      - in: "sakelar"
+        out: switch
+  cover_states:
+    values:
+      - in: "terbuka"
+        out: "open"
+      - in: "tertutup"
+        out: "closed"
+      - in: "membuka"
+        out: "opening"
+      - in: "menutup"
+        out: "closing"
+  cover_classes:
+    values:
+      - in: awning[s]
+        out: awning
+      - in: blind[s]
+        out: blind
+      - in: curtain[s]
+        out: curtain
+      - in: door[s]
+        out: door
+      - in: garage door[s]
+        out: garage
+      - in: gate[s]
+        out: gate
+      - in: shade[s]
+        out: shade
+      - in: shutter[s]
+        out: shutter
+      - in: window[s]
+        out: window
+  lock_states:
+    values:
+      - in: "terkunci"
+        out: "locked"
+      - in: "tidak terkunci"
+        out: "unlocked"
+
+  # binary_sensor
+  bs_battery_states:
+    values:
+      - in: "rendah"
+        out: "on"
+      - in: "normal"
+        out: "off"
+
+  bs_battery_charging_states:
+    values:
+      - in: "mengecas"
+        out: "on"
+      - in: "tidak mengecas"
+        out: "off"
+
+  bs_carbon_monoxide_states:
+    values:
+      - in: "(terdeteksi|nyala)"
+        out: "on"
+      - in: "bersih"
+        out: "off"
+
+  bs_cold_states:
+    values:
+      - in: "dingin"
+        out: "on"
+      - in: "normal"
+        out: "off"
+
+  bs_connectivity_states:
+    values:
+      - in: "(tersambung|terhubung)"
+        out: "on"
+      - in: "terputus"
+        out: "off"
+
+  bs_door_states:
+    values:
+      - in: "terbuka"
+        out: "on"
+      - in: "tertutup"
+        out: "off"
+
+  bs_garage_door_states:
+    values:
+      - in: "terbuka"
+        out: "on"
+      - in: "tertutup"
+        out: "off"
+
+  bs_gas_states:
+    values:
+      - in: "(terdeteksi|nyala)"
+        out: "on"
+      - in: "bersih"
+        out: "off"
+
+  bs_heat_states:
+    values:
+      - in: "panas"
+        out: "on"
+      - in: "normal"
+        out: "off"
+
+  bs_light_states:
+    values:
+      - in: "terdeteksi"
+        out: "on"
+      - in: "tidak ada sinar"
+        out: "off"
+
+  bs_lock_states:
+    values:
+      - in: "tidak terkunci"
+        out: "on"
+      - in: "terkunci"
+        out: "off"
+
+  bs_moisture_states:
+    values:
+      - in: "basah"
+        out: "on"
+      - in: "kering"
+        out: "off"
+
+  bs_motion_states:
+    values:
+      - in: "(terdeteksi|nyala)"
+        out: "on"
+      - in: "bersih"
+        out: "off"
+
+  bs_occupancy_states:
+    values:
+      - in: "(terdeteksi|nyala)"
+        out: "on"
+      - in: "bersih"
+        out: "off"
+
+  bs_opening_states:
+    values:
+      - in: "terbuka"
+        out: "on"
+      - in: "tertutup"
+        out: "off"
+
+  bs_plug_states:
+    values:
+      - in: "dicolokkan"
+        out: "on"
+      - in: "dicabut"
+        out: "off"
+
+  bs_power_states:
+    values:
+      - in: "(dinyalakan|)"
+        out: "on"
+      - in: "(tidak dinyalakan)"
+        out: "off"
+
+  bs_presence_states:
+    values:
+      - in: "(di rumah|ada)"
+        out: "on"
+      - in: "(ke luar|tidak ada)"
+        out: "off"
+
+  bs_problem_states:
+    values:
+      - in: "terdeteksi"
+        out: "on"
+      - in: "oke"
+        out: "off"
+
+  bs_running_states:
+    values:
+      - in: "berjalan"
+        out: "on"
+      - in: "tidak berjalan"
+        out: "off"
+
+  bs_safety_states:
+    values:
+      - in: "tidak aman"
+        out: "on"
+      - in: "aman"
+        out: "off"
+
+  bs_smoke_states:
+    values:
+      - in: "(terdeteksi|nyala)"
+        out: "on"
+      - in: "bersih"
+        out: "off"
+
+  bs_sound_states:
+    values:
+      - in: "(terdeteksi|nyala)"
+        out: "on"
+      - in: "bersih"
+        out: "off"
+
+  bs_tamper_states:
+    values:
+      - in: "(terdeteksi|dirusak)"
+        out: "on"
+      - in: "bersih"
+        out: "off"
+
+  bs_update_states:
+    values:
+      - in: "pembaruan tersedia"
+        out: "on"
+      - in: "terbaru"
+        out: "off"
+
+  bs_vibration_states:
+    values:
+      - in: "(terdeteksi|bergetar)"
+        out: "on"
+      - in: "(bersih|tidak bergetar)"
+        out: "off"
+
+  bs_window_states:
+    values:
+      - in: "terbuka"
+        out: "on"
+      - in: "tertutup"
+        out: "closed"
+
+  shopping_list_item:
+    wildcard: true
+
+  zone:
+    wildcard: true
+
+  position:
+    range:
+      type: "percentage"
+      from: 0
+      to: 100
+
+  volume:
+    range:
+      type: "percentage"
+      from: 0
+      to: 100
+
 expansion_rules:
-  nama: "{name}"
+  name: "{name}"
   area: "{area}"
-  apakah: "(apa | apakah | apa itu)"
-  berapa: "(berapa | berapakah)"
-  nyala_imperatif: "(nyalakan | nyalain | hidupkan | hidupin)"
-  mati_imperatif: "(matikan | matiin)"
-  buka_imperatif: "(buka | bukain)"
-  tutup_imperatif: "(tutup | tutupin)"
-  set_imperatif: "(atur | setel | setelin | set | jadikan | jadiin)"
-  kecerahan: "{brightness}[%| persen]"
-  suhu: "{temperature} [derajat] [{temperature_unit}]"
-skip_words:
+  brightness: "{brightness}[[ ]%| persen]"
+  temperature: "{temperature}[ ][°|derajat][ ][{temperature_unit}]"
+  position: "{position}[[ ]%| persen]"
+  volume: "{volume:volume_level}[[ ]%| persen]"
+  #  what_is: "(what's|whats|what is)"
+  #  where_is: "(where's|wheres|where is)"
+  #  light: "[the] (light|lights|lighting)"
+  #  turn: "(turn|switch|change)"
+  #  temp: "(temp|temperature)"
+  #  open: "(open|raise)"
+  #  close: "(close|shut|lower)"
+  #  set: "(set|make|change|turn)"
+  #  numeric_value_set: "(set|change|turn|increase|decrease|make)"
+  #  in: "(in|on|at|of)"
+
+  # Questions
+  #  what_is_the_class_of_name: "(<what_is> the <class> (of|in|from|(indicated|measured) by) <name> [in <area>]|<what_is> <name>['s] <class> [in <area>]|<what_is> <area> <name>['s] <class>)"
+  what_is_the_class_of_name: "apa nama <class> dari <name> [di <area>]"
+sskip_words:
   - "tolong"
