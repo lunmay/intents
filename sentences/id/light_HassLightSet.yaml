@@ -1,43 +1,28 @@
-language: "en"
+language: "id"
 intents:
   HassLightSet:
     data:
       # brightness
       - sentences:
-          - "[<numeric_value_set>] <name> brightness [to] <brightness>"
-          - "[<numeric_value_set>] [the] brightness [of] <name> [to] <brightness>"
-          - "[<numeric_value_set>] <name> [to] <brightness> [brightness]"
-        response: "brightness"
+          - "[<set_imperatif>] [kecerahan] <name> [menjadi] <brightness_value>"
         requires_context:
           domain: light
+        response: "brightness"
 
       - sentences:
-          - "<numeric_value_set> <name> to <brightness>"
-        requires_context:
-          domain: "light"
-        response: "brightness"
-      - sentences:
-          - "[<numeric_value_set>] [the] brightness in <area> to <brightness>"
-          - "[<numeric_value_set>] [the] brightness of <area> to <brightness>"
-          - "[<numeric_value_set>] <area> brightness [to] <brightness>"
-          - "[<numeric_value_set>] <area> [to] <brightness> brightness"
-          - "[<numeric_value_set>] <area> [to] <brightness>"
-          - "[<numeric_value_set>] [all] [the] lights [<in>] <area> to <brightness> [brightness]"
+          - "[<set_imperatif>] [kecerahan] <name> di <area> [menjadi] <brightness_value>"
         slots:
           name: "all"
         response: "brightness"
 
       - sentences:
-          - "<numeric_value_set> <area> to <brightness>"
+          - "[<set_imperatif>] [kecerahan] <area> [menjadi] <brightness_value>"
         slots:
           name: "all"
         response: "brightness"
 
       - sentences:
-          - "[<numeric_value_set>] [the] brightness to <brightness>"
-          - "[<numeric_value_set>] [the] brightness (<in_here>;to <brightness>)"
-        expansion_rules:
-          in_here: "[ in] here"
+          - "[<set_imperatif>] [kecerahan] di sini [menjadi] <brightness_value>"
         response: "brightness"
         requires_context:
           area:
@@ -45,27 +30,19 @@ intents:
 
       # Max/Min brightness
       - sentences:
-          - "[<numeric_value_set>] <name> brightness to [the] {brightness_level:brightness}"
-          - "[<numeric_value_set>] [the] brightness of <name> to [the] {brightness_level:brightness}"
-          - "[<numeric_value_set>] <name> [to] [the] {brightness_level:brightness} brightness"
+          - "[<set_imperatif>] [kecerahan] <name> [menjadi] {brightness_level:brightness}"
         requires_context:
           domain: light
         response: "brightness"
 
       - sentences:
-          - "[<numeric_value_set>] [the] brightness in <area> to [the] {brightness_level:brightness}"
-          - "[<numeric_value_set>] [the] brightness of <area> to [the] {brightness_level:brightness}"
-          - "[<numeric_value_set>] <area> brightness to [the] {brightness_level:brightness}"
-          - "[<numeric_value_set>] <area> [to] [the] {brightness_level:brightness} brightness"
+          - "[<set_imperatif>] [kecerahan] <name> di <area> [menjadi] {brightness_level:brightness}"
         slots:
           name: "all"
         response: "brightness"
 
       - sentences:
-          - "[<numeric_value_set>] [the] brightness to [the] {brightness_level:brightness}"
-          - "[<numeric_value_set>] [the] brightness (<in_here>;to [the] {brightness_level:brightness})"
-        expansion_rules:
-          in_here: "[ in] here"
+          - "[<set_imperatif>] [kecerahan] di sini [menjadi] {brightness_level:brightness}"
         response: "brightness"
         requires_context:
           area:
@@ -73,23 +50,20 @@ intents:
 
       # color
       - sentences:
-          - "[<set>] <name> [color] [to] {color}"
-          - "[<set>] [[the] color of] <name> to {color}"
+          - "[<set_imperatif>] [warna] <name> [menjadi] {color}"
         requires_context:
           domain: light
         response: "color"
       - sentences:
-          - "[<set>] [[the] color of] (<area> | [all [the]] lights in <area> | [all] <area> lights) [to] {color}"
-          - "[<set>] (<area> | [all] lights in <area> | [all] <area> lights) [color] [to] {color}"
+          - "[<set_imperatif>] [warna] <name> di <area> [menjadi] {color}"
         slots:
           name: "all"
         response: "color"
 
       - sentences:
+          - "[<set_imperatif>] [warna] di sini [menjadi] {color}"
           - "[<set>] [[the] color of] [all] <light> [to] {color}"
           - "[<set>] [[the] color of] [all] <light> (<in_here>;[to] {color})"
-        expansion_rules:
-          in_here: "[ in] here"
         response: "color"
         requires_context:
           area:
