@@ -1,0 +1,9 @@
+language: "id"
+intents:
+  HassMediaNext:
+    data:
+      - sentences:
+          - "(skip|lewati) (trek|lagu) [di] <name>"
+          - "(trek|lagu) berikutnya [di] <name>"
+        requires_context:
+          domain: media_player

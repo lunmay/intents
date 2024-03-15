@@ -1,0 +1,8 @@
+language: "id"
+intents:
+  HassSetVolume:
+    data:
+      - sentences:
+          - "(naikkan|turunkan|<set_imperatif>) volume <name> (ke|menjadi) <volume> [persen]"
+        requires_context:
+          domain: media_player

@@ -1,0 +1,8 @@
+language: "id"
+intents:
+  HassMediaUnpause:
+    data:
+      - sentences:
+          - "(putar|lanjutkan) <name>"
+        requires_context:
+          domain: media_player

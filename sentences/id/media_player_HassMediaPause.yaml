@@ -1,0 +1,8 @@
+language: "id"
+intents:
+  HassMediaPause:
+    data:
+      - sentences:
+          - "(pause|jeda) <name>"
+        requires_context:
+          domain: media_player
