@@ -193,7 +193,7 @@ lists:
     values:
       - in: "terdeteksi"
         out: "on"
-      - in: "tidak ada sinar"
+      - in: "tidak terdeteksi"
         out: "off"
 
   bs_lock_states:
