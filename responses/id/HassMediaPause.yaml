@@ -1,0 +1,5 @@
+language: "id"
+responses:
+  intents:
+    HassMediaPause:
+      default: "Dijeda"

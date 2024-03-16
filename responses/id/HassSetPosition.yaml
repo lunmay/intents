@@ -1,0 +1,5 @@
+language: "id"
+responses:
+  intents:
+    HassSetPosition:
+      default: "Posisi disetel"

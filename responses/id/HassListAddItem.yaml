@@ -1,0 +1,5 @@
+language: "id"
+responses:
+  intents:
+    HassListAddItem:
+      item_added: "{{ slots.item }} ditambahkan"

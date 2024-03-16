@@ -1,9 +1,13 @@
-language: id
+language: "id"
 responses:
   intents:
     HassTurnOn:
-      default: Turned on {{ slots.name }}
-      lights_area: Turned on lights in {{ slots.area }}
-      fans_area: Turned on fans in {{ slots.area }}
-      cover: Opened {{ slots.name }}
-      cover_area: Opened {{ slots.area }}
+      default: "{{ state.domain }} dinyalakan"
+      lights_area: "Lampu dinyalakan"
+      fans_area: "Kipas angin dinyalakan"
+      cover: "Dibuka"
+      cover_device_class: "{{ slots.device_class }} dibuka"
+      scene: "Diaktifkan"
+      script: "Dimulai"
+      lock: "Dikunci"
+      valve: "Dibuka"

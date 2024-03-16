@@ -1,4 +1,74 @@
-language: id
+language: "id"
 responses:
   intents:
-    HassGetState: {}
+    HassGetState:
+      default: "{{ state.state_with_unit }}" # used mostly for custom sentences
+
+      # the number of names returned is limited to 4, in case there are more, the first 3 names and the remaining count is returned
+      # with 4 names or less, the names are joined with a comma ", " and the last name is joined with " and "
+      one: |
+        Status {{ slots.name | capitalize }} adalah {{ state.state_with_unit }}
+
+      one_yesno: |
+        {% if query.matched %}
+          Ya
+        {% else %}
+          Tidak, statusnya {{ state.state_with_unit }}
+        {% endif %}
+
+      any: |
+        {% if query.matched %}
+          {% set match = query.matched | map(attribute="name") | sort | list %}
+          {% if match | length > 4 %}
+            Ya, {{ match[:3] | join(", ") }} dan {{ (match | length - 3) }} lainnya
+          {%- else -%}
+            Ya,
+            {% for name in match -%}
+              {% if not loop.first and not loop.last %}, {% elif loop.last and not loop.first %}, dan {% endif -%}
+              {{ name }}
+            {%- endfor -%}
+          {% endif %}
+        {% else %}
+          Tidak
+        {% endif %}
+
+      all: |
+        {% if not query.unmatched: %}
+          Ya
+        {% else %}
+          {% set no_match = query.unmatched | map(attribute="name") | sort | list %}
+          {% if no_match | length > 4 %}
+            Tidak, {{ no_match[:3] | join(", ") }} dan {{ (no_match | length - 3) }} lainnya tidak memiliki status {{ slots.state }}
+          {%- else -%}
+            Tidak,
+            {% for name in no_match -%}
+              {% if not loop.first and not loop.last %}, {% elif loop.last and not loop.first %}, dan {% endif -%}
+              {{ name }}
+            {%- endfor %} {% if no_match | length > 1 %}adalah{% else %}is{% endif %} tidak {{ slots.state }}
+          {% endif %}
+        {% endif %}
+
+      which: |
+        {% if not query.matched %}
+          Tidak satupun
+        {% else: %}
+          {% set match = query.matched | map(attribute="name") | sort | list %}
+          {% if match | length > 4 %}
+            {{ match[:3] | join(", ") }} dan {{ (match | length - 3) }} lainnya
+          {% else %}
+            {%- for name in match -%}
+              {% if not loop.first and not loop.last %}, {% elif loop.last and not loop.first %}, dan {% endif -%}
+              {{ name }}
+            {%- endfor -%}
+          {% endif %}
+        {% endif %}
+
+      how_many: |
+        {{ query.matched | length }}
+
+      where: |
+        {% if state == "not_home" %}
+          {{ slots.name | capitalize }} ke luar
+        {% else %}
+          Status {{ slots.name | capitalize }} adalah {{ state.state }}
+        {% endif %}

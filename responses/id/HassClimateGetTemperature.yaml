@@ -1,5 +1,11 @@
-language: id
+language: "id"
 responses:
   intents:
     HassClimateGetTemperature:
-      default: "{{ state.state }} degrees"
+      default: >
+        {% set temperature = state_attr(state.entity_id, 'current_temperature') %}
+        {% if temperature == 1: %}
+        {{ temperature }} derajat
+        {% else: %}
+        {{ temperature }} derajat
+        {% endif %}

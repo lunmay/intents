@@ -1,0 +1,5 @@
+language: "id"
+responses:
+  intents:
+    HassMediaNext:
+      default: "Memutar berikutnya"

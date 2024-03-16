@@ -1,0 +1,24 @@
+language: "id"
+responses:
+  intents:
+    HassGetWeather:
+      default: >
+        {% set weather_condition = {
+          'clear': 'langit bersih',
+          'clear-night': 'malam bersih',
+          'cloudy': 'berawan',
+          'exceptional': 'and exceptional',
+          'fog': 'berkabut',
+          'hail': 'hujan es',
+          'lightning': 'dengan petir',
+          'lightning-rainy': 'hujan petir',
+          'partlycloudy': 'sebagian berawan',
+          'pouring': 'hujan deras',
+          'rainy': 'hujan',
+          'snowy': 'salju',
+          'snowy-rainy': 'hujan dan salju',
+          'sunny': 'cerah',
+          'windy': 'berangin',
+          'windy-variant': 'berangin dan berawan'
+        } %}
+        {{ state.attributes.get('temperature') }} {{ state.attributes.get('temperature_unit') }}, {{ weather_condition.get((state.state | string).lower(), "") }}

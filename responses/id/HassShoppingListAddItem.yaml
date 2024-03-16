@@ -1,0 +1,5 @@
+language: "id"
+responses:
+  intents:
+    HassShoppingListAddItem:
+      item_added: "{{ slots.item }} ditambahkan"
